@@ -1,4 +1,4 @@
-package advanced;
+package application;
 
 /** The enum represents the possible values that a game cell could have.*/
 public enum CellValue {

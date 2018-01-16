@@ -1,4 +1,4 @@
-package advanced;
+package application;
 import advanced.Point;
 import java.util.List;
 import advanced.Board;

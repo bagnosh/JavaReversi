@@ -1,4 +1,4 @@
-package advanced;
+package application;
 
 import advanced.Player;
 import advanced.Logic;

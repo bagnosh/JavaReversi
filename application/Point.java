@@ -1,4 +1,4 @@
-package advanced;
+package application;
 
 public class Point {
  private int x;

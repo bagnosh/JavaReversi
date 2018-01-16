@@ -1,4 +1,4 @@
-package advanced;
+package application;
 
 import advanced.Display;
 import java.util.*;
