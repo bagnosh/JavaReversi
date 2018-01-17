@@ -1,6 +1,6 @@
 package application;
 
-import advanced.Display;
+import application.Display;
 import java.util.*;
 
 /**

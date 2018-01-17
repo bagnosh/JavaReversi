@@ -2,10 +2,10 @@ package application;
 
 import java.util.LinkedList;
 import java.util.List;
-import advanced.Logic;
-import advanced.Point;
-import advanced.Board;
-import advanced.CellValue;
+import application.Logic;
+import application.Point;
+import application.Board;
+import application.CellValue;
 
 /**
  * Names       : Yifat Yankocivh

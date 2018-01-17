@@ -1,9 +1,9 @@
 package application;
 
-import advanced.Player;
-import advanced.Logic;
-import advanced.Display;
-import advanced.CellValue;
+import application.Player;
+import application.Logic;
+import application.Display;
+import application.CellValue;
 import java.util.List;
 
 /**

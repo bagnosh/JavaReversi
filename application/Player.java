@@ -1,7 +1,7 @@
 package application;
-import advanced.Point;
+import application.Point;
 import java.util.List;
-import advanced.Board;
+import application.Board;
 
 /**
  * Names       : Yifat Yankocivh

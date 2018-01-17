@@ -1,5 +1,5 @@
 package application;
-import advanced.CellValue;
+import application.CellValue;
 /**
  * Names       : Yifat Yankocivh
  * 				 Shoham Bar-Gad

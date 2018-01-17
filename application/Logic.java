@@ -1,6 +1,6 @@
 package application;
-import advanced.Board;
-import advanced.Point;
+import application.Board;
+import application.Point;
 import java.util.List;;
 
 /**
