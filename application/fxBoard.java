@@ -11,6 +11,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -30,7 +37,7 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	private VBox scores;
 	private VBox gridContainer;
 
-	public fxBoard(CellClicked mouseOn) {
+	public fxBoard(CellClicked mouseOn) {		
 		this.mouseOn = mouseOn;
 		this.white = 'X';
 		this.black = 'Y';

@@ -5,6 +5,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import application.Board;
 import application.CellClicked;
 import application.CellValue;
@@ -13,6 +17,7 @@ import application.GameFxManager;
 import application.Logic;
 import application.fxBoard;
 import javafx.fxml.*;
+import java.lang.Integer;
 
 public class FXMLMainScreenController {
 
@@ -30,7 +35,6 @@ public class FXMLMainScreenController {
 	@FXML
 	private void settingsChange() {
 		settingsLabel.setTextFill(Color.CRIMSON);
-		;
 	}
 
 	@FXML
@@ -50,20 +54,35 @@ public class FXMLMainScreenController {
 		Stage stage = null;
 		fxBoard root = null;
 		stage = (Stage) startLabel.getScene().getWindow();
-		
-		Board game = new Board(4);
+
+		String startPlayer = "white", firstPlayer, secoundPlayer, size= "4";
+
+		try (BufferedReader br = new BufferedReader(new FileReader("src/application/setting_config.txt"))) {
+			startPlayer = br.readLine();
+			firstPlayer = br.readLine();
+			secoundPlayer = br.readLine();
+			size = br.readLine();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		Board game = new Board(Integer.parseInt(size));
 		Logic logic = new ClassicLogic(game);
-		GameFxManager manager = new GameFxManager(game, logic,CellValue.BLACK);
-		CellClicked mouseOnMethod = new CellClicked();		
+		CellValue start = CellValue.WHITE;
+		if(startPlayer != "white"){
+			start = CellValue.BLACK;
+		}
+		GameFxManager manager = new GameFxManager(game, logic,start);
+		CellClicked mouseOnMethod = new CellClicked();
 		mouseOnMethod.AddRciver(manager);
-		root = new fxBoard(mouseOnMethod);	
+		root = new fxBoard(mouseOnMethod);
 		root.setPrefSize(400, 400);
 		root.setBoard(game, manager);
-			
-		Scene scene = new Scene(root,400,400);
+
+		Scene scene = new Scene(root, 400, 400);
 		stage.setScene(scene);
-		stage.show();	
-		}
+		stage.show();
+	}
 
 	@FXML
 	private void handleSettingsClicked() {
