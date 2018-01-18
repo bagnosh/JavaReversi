@@ -1,7 +1,7 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
 
 .root {
-	-fx-background-image: url("bokeh.jpg")
+	-fx-background-image: url("../../src/application/bokeh.jpg")
 }
 
 .label {

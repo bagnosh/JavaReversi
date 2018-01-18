@@ -5,9 +5,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+
 import javafx.fxml.*;
 
 public class FXMLMainScreenController {
+	
 	@FXML
 	private Label startLabel;
 	
