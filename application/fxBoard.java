@@ -15,13 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -31,9 +24,8 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	private GameFxManager manager;
 	private GridPane gameGrid;
 	private GridCell cells[][];
-	private char white;
-	private char black;
-	private char space;
+	private Color white;
+	private Color black;
 	private Label whiteScore;
 	private Label blackScore;
 	private Label commentForUser;
@@ -45,9 +37,8 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	
 	public fxBoard(CellClicked mouseOn) {		
 		this.mouseOn = mouseOn;
-		this.white = 'X';
-		this.black = 'Y';
-		this.space = ' ';
+		this.white = Color.BLACK;
+		this.black = Color.RED;
 		this.gameBoard = null;
 		this.manager = null;
 
@@ -105,9 +96,11 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 					switch (this.gameBoard.getCellValue(i, j)) {
 					case WHITE:
 						cell.setText("O");
+						cell.setTextFill(this.white);
 						break;
 					case BLACK:
-						cell.setText("X");
+						cell.setText("x");
+						cell.setTextFill(this.black);
 						break;
 					case EMPTY:
 						cell.setText(" ");
@@ -160,6 +153,16 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 				this.cells[i][j].removeEventHandler(MouseEvent.MOUSE_PRESSED, this);
 			}
 		}
+		this.draw();
+	}
+	
+	public void setWhiteColor(Color color){
+		this.white = color;
+		this.draw();
+	}
+	
+	public void setBlackColor(Color color){
+		this.black = color;
 		this.draw();
 	}
 }
