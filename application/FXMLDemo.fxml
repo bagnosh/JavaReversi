@@ -44,9 +44,9 @@
 				<RadioButton fx:id="whiteBox" mnemonicParsing="false"
 					text="white" toggleGroup="$starter" GridPane.columnIndex="2"
 					GridPane.rowIndex="1" />
-				<ChoiceBox fx:id="blackChoice" prefWidth="150.0"
+				<ComboBox fx:id="blackChoice" prefWidth="150.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<ChoiceBox fx:id="whiteChoice" prefWidth="150.0"
+				<ComboBox fx:id="whiteChoice" prefWidth="150.0"
 					GridPane.columnIndex="2" GridPane.rowIndex="2" />
 				<Label text="Choose active colors:" GridPane.rowIndex="2" />
 				<Label text="Choose board size:" GridPane.rowIndex="4" />
