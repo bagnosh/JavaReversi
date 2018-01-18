@@ -29,22 +29,22 @@ public class FXMLMainScreenController {
 
 	@FXML
 	private void startChange() {
-		startLabel.setTextFill(Color.AQUA);
+		startLabel.setTextFill(Color.BEIGE);
 	}
 
 	@FXML
 	private void settingsChange() {
-		settingsLabel.setTextFill(Color.AQUA);
+		settingsLabel.setTextFill(Color.BEIGE);
 	}
 
 	@FXML
 	private void startChangeBack() {
-		startLabel.setTextFill(Color.CRIMSON);
+		startLabel.setTextFill(Color.web("#A99D4E"));
 	}
 
 	@FXML
 	private void settingsChangeBack() {
-		settingsLabel.setTextFill(Color.CRIMSON);
+		settingsLabel.setTextFill(Color.web("#A99D4E"));
 	}
 
 	@FXML
