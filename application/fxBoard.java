@@ -15,13 +15,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Writer;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -106,7 +99,7 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 						cell.setTextFill(this.white);
 						break;
 					case BLACK:
-						cell.setText("O");
+						cell.setText("x");
 						cell.setTextFill(this.black);
 						break;
 					case EMPTY:
@@ -165,9 +158,11 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	
 	public void setWhiteColor(Color color){
 		this.white = color;
+		this.draw();
 	}
 	
 	public void setBlackColor(Color color){
 		this.black = color;
+		this.draw();
 	}
 }
