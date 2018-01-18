@@ -16,17 +16,18 @@
 #title {
 	-fx-font-size: 25px;
 	-fx-font-family: Arial;
-	-fx-fill: rgb(255,255,255);
+	-fx-fill: #7F7220;
 }
 
 #mainTitle {
 	-fx-font-size: 30px;
 	-fx-font-family: Arial;
-	-fx-fill: rgb(255,255,255);
+	-fx-fill: #7F7220;
 }
 
 #specialLabel {
 	-fx-font-size: 17px;
 	-fx-font-family: Arial;
 	-fx-font-weight: bold;
+	-fx-text-fill: #A99D4E; 
 }
