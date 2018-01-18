@@ -5,68 +5,94 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-
+import application.Board;
+import application.CellClicked;
+import application.CellValue;
+import application.ClassicLogic;
+import application.GameFxManager;
+import application.Logic;
+import application.fxBoard;
 import javafx.fxml.*;
 
 public class FXMLMainScreenController {
-	
+
 	@FXML
 	private Label startLabel;
-	
+
 	@FXML
 	private Label settingsLabel;
-	
+
 	@FXML
 	private void startChange() {
 		startLabel.setTextFill(Color.CRIMSON);
 	}
-	
+
 	@FXML
 	private void settingsChange() {
-		settingsLabel.setTextFill(Color.CRIMSON);;
+		settingsLabel.setTextFill(Color.CRIMSON);
+		;
 	}
-	
+
 	@FXML
 	private void startChangeBack() {
-		startLabel.setTextFill(Color.BLACK);;
+		startLabel.setTextFill(Color.BLACK);
+		;
 	}
-	
+
 	@FXML
 	private void settingsChangeBack() {
-		settingsLabel.setTextFill(Color.BLACK);;
+		settingsLabel.setTextFill(Color.BLACK);
+		;
 	}
-	
+
 	@FXML
 	private void handleStartClicked() {
-		//
-	}
-	
+		Stage stage = null;
+		fxBoard root = null;
+		stage = (Stage) startLabel.getScene().getWindow();
+		
+		Board game = new Board(4);
+		Logic logic = new ClassicLogic(game);
+		GameFxManager manager = new GameFxManager(game, logic,CellValue.BLACK);
+		CellClicked mouseOnMethod = new CellClicked();		
+		mouseOnMethod.AddRciver(manager);
+		root = new fxBoard(mouseOnMethod);	
+		root.setPrefSize(400, 400);
+		root.setBoard(game, manager);
+			
+		Scene scene = new Scene(root,400,400);
+		stage.setScene(scene);
+		stage.show();	
+		}
+
 	@FXML
 	private void handleSettingsClicked() {
 		Stage stage = null;
 		Parent root = null;
-		//get stage
+		// get stage
 		stage = (Stage) settingsLabel.getScene().getWindow();
-		//load setting's FXML
+		// load setting's FXML
 		try {
 			root = FXMLLoader.load(getClass().getResource("FXMLDemo.fxml"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		//set stage
+		// set stage
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setTitle("Reversi");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	@FXML
-	private void startGame() {}
-	
+	private void startGame() {
+	}
+
 	@FXML
-	private void goSettings() {}
-	
-	public FXMLMainScreenController() {}
+	private void goSettings() {
+	}
+
+	public FXMLMainScreenController() {
+	}
 }
