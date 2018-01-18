@@ -32,9 +32,10 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	private Label toMainMenu;
 	private CellClicked mouseOn;
 	private VBox gridContainer;
-	
-	
-	public fxBoard(CellClicked mouseOn) {		
+	String whiteName;
+	String blackName;
+
+	public fxBoard(CellClicked mouseOn) {
 		this.mouseOn = mouseOn;
 		this.white = Color.BLACK;
 		this.black = Color.RED;
@@ -43,11 +44,9 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 
 		// Initiates the game
 		this.gridContainer = new VBox();
-		
+
 		this.gameGrid = new GridPane();
 		this.gameGrid.setPrefSize(300, 300);
-		
-		
 
 		// Initiateing the scores of the users.'
 		this.whiteScore = new Label("Not initialized");
@@ -58,8 +57,7 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 		this.gridContainer.getChildren().add(this.blackScore);
 		this.commentForUser = new Label("Not initialized");
 		this.gridContainer.getChildren().add(this.commentForUser);
-		
-		
+
 		// Set the to setings lable
 		this.toMainMenu = new Label("Back to main menu");
 		this.gridContainer.getChildren().add(this.toMainMenu);
@@ -67,20 +65,20 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 		this.toMainMenu.setOnMouseClicked(event -> {
 			Stage stage = null;
 			GridPane root = null;
-			try{
-				root = (GridPane)FXMLLoader.load(getClass().getResource("FXMLMainScreen.fxml"));
-			} catch (Exception e){
+			try {
+				root = (GridPane) FXMLLoader.load(getClass().getResource("FXMLMainScreen.fxml"));
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			stage = (Stage) this.toMainMenu.getScene().getWindow();
-			Scene scene = new Scene(root,400,400);
+			Scene scene = new Scene(root, 400, 400);
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-			stage .setTitle("Reversi");
-			stage .setScene(scene);
-			stage .show();
+			stage.setTitle("Reversi");
+			stage.setScene(scene);
+			stage.show();
 		});
 	}
-	
+
 	public void draw() {
 		this.gameGrid.getChildren().clear();
 		if (this.gameBoard != null) {
@@ -120,20 +118,23 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 					this.cells[i][j] = cell;
 				}
 			}
-			
-			String strWhite = String.valueOf("White Score : " + gameBoard.getWhiteCellsNumber());
+
+			String strWhite = String.valueOf(this.whiteName + " Score : " + gameBoard.getWhiteCellsNumber());
 			this.whiteScore.setText(strWhite);
-			String strBlack = String.valueOf("Black Score : " + gameBoard.getBlackCellsNumber()); 
+			String strBlack = String.valueOf(this.blackName+ " Score : " + gameBoard.getBlackCellsNumber());
 			this.blackScore.setText(strBlack);
-			this.commentForUser.setText(this.manager.getMassage());
-				
+			if (this.manager.isMissed()) {
+				this.commentForUser.setText("No avalable moves, turn go to other player");
+			} else {
+				this.commentForUser.setText("");
+			}
+
 			// If the game ended
-			if(this.manager.getWinner() != CellValue.EMPTY){
-				if(this.manager.getWinner() == CellValue.WHITE){
-					this.commentForUser.setText("Game ended. winner white");
-				}
-				else {
-					this.commentForUser.setText("Game ended. winner black");
+			if (this.manager.getWinner() != CellValue.EMPTY) {
+				if (this.manager.getWinner() == CellValue.WHITE) {
+					this.commentForUser.setText("Game ended. winner " + this.whiteName);
+				} else {
+					this.commentForUser.setText("Game ended. winner " + this.blackName);
 				}
 			}
 
@@ -156,14 +157,44 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 		}
 		this.draw();
 	}
-	
-	public void setWhiteColor(Color color){
+
+	public void setWhiteColor(Color color) {
 		this.white = color;
+		this.whiteName = this.stringColor(this.white);
 		this.draw();
 	}
-	
-	public void setBlackColor(Color color){
+
+	public void setBlackColor(Color color) {
 		this.black = color;
+		this.blackName = this.stringColor(this.black);
 		this.draw();
+	}
+
+	public String stringColor(Color color) {
+
+		if (color == Color.BLACK) {
+			return "Black";
+		}
+		if (color == Color.PURPLE) {
+			return "Pruple";
+		}
+		if (color == Color.BLUE) {
+			return "Blue";
+		}
+		if (color == Color.GREEN) {
+			return "green";
+		}
+		if (color == Color.YELLOW) {
+			return "Yellow";
+		}
+		if (color == Color.ORANGE) {
+			return "Orange";
+		}
+		if (color == Color.RED) {
+			return "Red";
+		}
+
+		return "Black";
+
 	}
 }

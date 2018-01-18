@@ -53,7 +53,7 @@ public class FXMLMainScreenController {
 		fxBoard root = null;
 		stage = (Stage) startLabel.getScene().getWindow();
 
-		String startPlayer = "white", firstPlayer = "Black" , secoundPlayer = "Red", size = "4";
+		String startPlayer = "white", firstPlayer = "Black", secoundPlayer = "Red", size = "4";
 
 		try (BufferedReader br = new BufferedReader(new FileReader("src/application/setting_config.txt"))) {
 			startPlayer = br.readLine();
@@ -79,15 +79,12 @@ public class FXMLMainScreenController {
 		root.setBlackColor(fromString(secoundPlayer));
 		root.setWhiteColor(fromString(firstPlayer));
 		root.draw();
-		
+
 		Scene scene = new Scene(root, 400, 400);
 		stage.setScene(scene);
 		stage.show();
 	}
 
-
-	
-	
 	@FXML
 	private void handleSettingsClicked() {
 		Stage stage = null;

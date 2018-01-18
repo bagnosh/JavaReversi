@@ -7,12 +7,14 @@ public class GameFxManager implements CellClickedReciver {
 	private CellValue winner;
 	private CellValue currPlayer;
 	private String currentStatus;
+	private boolean isMissedTurn;
 	
 	public GameFxManager(Board gameBoard, Logic logic, CellValue startPlayer) {
 		this.logic = logic;
 		this.winner = CellValue.EMPTY;
 		this.currPlayer = startPlayer;
 		this.winner = CellValue.EMPTY;
+		this.isMissedTurn = false;
 	}
 
 	@Override
@@ -32,9 +34,11 @@ public class GameFxManager implements CellClickedReciver {
 			this.currentStatus = "";
 			this.logic.playMove(new Point(cell.getX(), cell.getY()), this.currPlayer);
 			this.ChangePlayersTurn();
-
+			this.isMissedTurn = false;
+			
 			// Check the player can move
 			if (this.logic.getLegalMoves(this.currPlayer).size() == 0) {
+				this.isMissedTurn = true;
 				this.currentStatus += "No moves Avalable, turn goes to othe player\n";
 				this.ChangePlayersTurn();
 				
@@ -72,5 +76,13 @@ public class GameFxManager implements CellClickedReciver {
 	
 	public CellValue getWinner(){
 		return this.winner;
+	}
+	
+	public CellValue getCurrPlayer(){
+		return this.currPlayer;
+	}
+	
+	public boolean isMissed(){
+		return this.isMissedTurn;
 	}
 }
