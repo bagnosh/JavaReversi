@@ -1,5 +1,7 @@
 package application;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Border;
@@ -11,6 +13,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -20,6 +23,7 @@ import java.io.Writer;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 
 public class fxBoard extends HBox implements EventHandler<MouseEvent> {
@@ -33,10 +37,12 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	private Label whiteScore;
 	private Label blackScore;
 	private Label commentForUser;
+	private Label toMainMenu;
 	private CellClicked mouseOn;
 	private VBox scores;
 	private VBox gridContainer;
-
+	
+	
 	public fxBoard(CellClicked mouseOn) {		
 		this.mouseOn = mouseOn;
 		this.white = 'X';
@@ -47,11 +53,10 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 
 		// Initiates the game
 		this.gridContainer = new VBox();
-		this.commentForUser = new Label("Not initialized");
+		
 		this.gameGrid = new GridPane();
 		this.gameGrid.setPrefSize(300, 300);
 		this.gridContainer.getChildren().add(gameGrid);
-		this.gridContainer.getChildren().add(this.commentForUser);
 		this.getChildren().add(this.gridContainer);
 
 		// Initiateing the scores of the users.'
@@ -61,8 +66,29 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 		this.scores.getChildren().add(this.whiteScore);
 		this.scores.getChildren().add(this.blackScore);
 		this.getChildren().add(this.scores);
+		this.commentForUser = new Label("Not initialized");
+		this.scores.getChildren().add(this.commentForUser);
+		
+		// Set the to setings lable
+		this.toMainMenu = new Label("Back to main menu");
+		this.gridContainer.getChildren().add(this.toMainMenu);
+		this.toMainMenu.setOnMouseClicked(event -> {
+			Stage stage = null;
+			GridPane root = null;
+			try{
+				root = (GridPane)FXMLLoader.load(getClass().getResource("FXMLMainScreen.fxml"));
+			} catch (Exception e){
+				e.printStackTrace();
+			}
+			stage = (Stage) this.toMainMenu.getScene().getWindow();
+			Scene scene = new Scene(root,400,400);
+			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+			stage .setTitle("Reversi");
+			stage .setScene(scene);
+			stage .show();
+		});
 	}
-
+	
 	public void draw() {
 		this.gameGrid.getChildren().clear();
 		if (this.gameBoard != null) {
@@ -95,7 +121,7 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 					cell.setPrefHeight(cellHight);
 					cell.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY,
 							BorderWidths.DEFAULT)));
-					cell.setOnMouseClicked(this); // lbl.setText("c");
+					cell.setOnMouseClicked(this);
 					this.gameGrid.add(cell, i, j);
 					this.cells[i][j] = cell;
 				}
