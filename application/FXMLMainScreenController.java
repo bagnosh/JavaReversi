@@ -53,7 +53,7 @@ public class FXMLMainScreenController {
 		fxBoard root = null;
 		stage = (Stage) startLabel.getScene().getWindow();
 
-		String startPlayer = "white", firstPlayer, secoundPlayer, size= "4";
+		String startPlayer = "white", firstPlayer = "Black" , secoundPlayer = "Red", size = "4";
 
 		try (BufferedReader br = new BufferedReader(new FileReader("src/application/setting_config.txt"))) {
 			startPlayer = br.readLine();
@@ -67,21 +67,27 @@ public class FXMLMainScreenController {
 		Board game = new Board(Integer.parseInt(size));
 		Logic logic = new ClassicLogic(game);
 		CellValue start = CellValue.WHITE;
-		if(startPlayer != "white"){
+		if (startPlayer != "white") {
 			start = CellValue.BLACK;
 		}
-		GameFxManager manager = new GameFxManager(game, logic,start);
+		GameFxManager manager = new GameFxManager(game, logic, start);
 		CellClicked mouseOnMethod = new CellClicked();
 		mouseOnMethod.AddRciver(manager);
 		root = new fxBoard(mouseOnMethod);
 		root.setPrefSize(400, 400);
 		root.setBoard(game, manager);
-
+		root.setBlackColor(fromString(secoundPlayer));
+		root.setWhiteColor(fromString(firstPlayer));
+		root.draw();
+		
 		Scene scene = new Scene(root, 400, 400);
 		stage.setScene(scene);
 		stage.show();
 	}
 
+
+	
+	
 	@FXML
 	private void handleSettingsClicked() {
 		Stage stage = null;
@@ -111,5 +117,35 @@ public class FXMLMainScreenController {
 	}
 
 	public FXMLMainScreenController() {
+	}
+
+	public Color fromString(String color) {
+		switch (color) {
+		case "Black": {
+			return Color.BLACK;
+		}
+		case "Pruple": {
+			return Color.PURPLE;
+		}
+		case "Blue": {
+			return Color.BLUE;
+		}
+		case "green": {
+			return Color.GREEN;
+		}
+		case "Yellow": {
+			return Color.YELLOW;
+		}
+		case "Orange": {
+			return Color.ORANGE;
+		}
+		case "Red": {
+			return Color.RED;
+		}
+		default: {
+			return Color.BLACK;
+		}
+		}
+
 	}
 }

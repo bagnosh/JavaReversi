@@ -31,7 +31,6 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 	private Label commentForUser;
 	private Label toMainMenu;
 	private CellClicked mouseOn;
-	private VBox scores;
 	private VBox gridContainer;
 	
 	
@@ -47,22 +46,24 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 		
 		this.gameGrid = new GridPane();
 		this.gameGrid.setPrefSize(300, 300);
-		this.gridContainer.getChildren().add(gameGrid);
-		this.getChildren().add(this.gridContainer);
+		
+		
 
 		// Initiateing the scores of the users.'
 		this.whiteScore = new Label("Not initialized");
 		this.blackScore = new Label("Not initialized");
-		this.scores = new VBox();
-		this.scores.getChildren().add(this.whiteScore);
-		this.scores.getChildren().add(this.blackScore);
-		this.getChildren().add(this.scores);
+		this.gridContainer = new VBox();
+		this.gridContainer.getChildren().add(gameGrid);
+		this.gridContainer.getChildren().add(this.whiteScore);
+		this.gridContainer.getChildren().add(this.blackScore);
 		this.commentForUser = new Label("Not initialized");
-		this.scores.getChildren().add(this.commentForUser);
+		this.gridContainer.getChildren().add(this.commentForUser);
+		
 		
 		// Set the to setings lable
 		this.toMainMenu = new Label("Back to main menu");
 		this.gridContainer.getChildren().add(this.toMainMenu);
+		this.getChildren().add(this.gridContainer);
 		this.toMainMenu.setOnMouseClicked(event -> {
 			Stage stage = null;
 			GridPane root = null;
@@ -99,7 +100,7 @@ public class fxBoard extends HBox implements EventHandler<MouseEvent> {
 						cell.setTextFill(this.white);
 						break;
 					case BLACK:
-						cell.setText("x");
+						cell.setText("O");
 						cell.setTextFill(this.black);
 						break;
 					case EMPTY:

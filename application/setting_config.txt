@@ -1,4 +1,4 @@
 black
-Black
-White
-14
+Blue
+Orange
+8
