@@ -1,7 +1,15 @@
 package application;
 
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import javafx.fxml.*;
+
+import javafx.event.ActionEvent;
+
+import java.io.IOException;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -46,8 +54,23 @@ public class FXMLDemoController {
 		size.setItems(sizeChoice);
 	}
 
-	@FXML
-	private void settingsDone() {}
+	@FXML	
+	private void HandleButtonClicked(ActionEvent event) throws IOException {
+		Stage stage = null;
+		Parent root = null;
+		if(event.getSource() == ready) {
+			//get stage
+			stage = (Stage) ready.getScene().getWindow();
+			//create game scene
+			root = FXMLLoader.load(getClass().getResource("FXMLMainScreen.fxml"));
+		}
+		//set stage
+		Scene scene = new Scene(root);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+		stage.setTitle("Reversi");
+		stage.setScene(scene);
+		stage.show();
+	}
 	
 	public FXMLDemoController() {
 	}

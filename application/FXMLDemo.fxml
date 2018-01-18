@@ -53,7 +53,7 @@
 				<ChoiceBox fx:id="size" prefWidth="150.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="4" />
 				<Button fx:id="ready" mnemonicParsing="false" text="Ready!"
-					GridPane.rowIndex="5" onAction="#settingsDone" />
+					GridPane.rowIndex="5" onAction="#HandleButtonClicked" />
 			</children>
 			<columnConstraints>
 				<ColumnConstraints maxWidth="176.0" minWidth="142.0"

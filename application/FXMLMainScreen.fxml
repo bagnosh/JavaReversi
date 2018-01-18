@@ -24,12 +24,12 @@
                   <Font name="FreeSans Bold" size="30.0" />
                </font></Text>
 
-				<Label id="specialLabel" fx:id="startLabel" onMouseClicked="#startGame" onMouseEntered="#startChange" onMouseExited="#startChangeBack" prefHeight="15.0" prefWidth="151.0" text="Start Game" textAlignment="CENTER" GridPane.rowIndex="1">
+				<Label id="specialLabel" fx:id="startLabel" onMouseClicked="#handleStartClicked" onMouseEntered="#startChange" onMouseExited="#startChangeBack" prefHeight="15.0" prefWidth="151.0" text="Start Game" textAlignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font size="17.0" />
                </font></Label>
 
-				<Label id="specialLabel" fx:id="settingsLabel" onMouseClicked="#goSettings" onMouseEntered="#settingsChange" onMouseExited="#settingsChangeBack" prefHeight="15.0" prefWidth="151.0" text="Settings" GridPane.rowIndex="2">
+				<Label id="specialLabel" fx:id="settingsLabel" onMouseClicked="#handleSettingsClicked" onMouseEntered="#settingsChange" onMouseExited="#settingsChangeBack" prefHeight="15.0" prefWidth="151.0" text="Settings" GridPane.rowIndex="2">
                <font>
                   <Font size="17.0" />
                </font></Label>
