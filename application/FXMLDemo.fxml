@@ -11,69 +11,51 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 
-<GridPane hgap="10" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLDemoController">
+<GridPane hgap="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.FXMLDemoController">
 	<children>
-		<GridPane id="back" alignment="center" hgap="10.0"
-			prefHeight="400.0" prefWidth="400.0" vgap="20.0">
+		<GridPane id="back" alignment="center" hgap="10.0" prefHeight="400.0" prefWidth="400.0" vgap="20.0">
 			<padding>
 				<Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
 			</padding>
 			<children>
 
-				<Label id="title" alignment="center" prefHeight="19.0"
-					prefWidth="301.0" text="Settings" GridPane.columnSpan="2147483647">
+				<Label id="title" alignment="center" prefHeight="19.0" prefWidth="301.0" text="Settings" GridPane.columnSpan="2147483647">
 					<font>
 						<Font name="Arial" size="15" />
 					</font>
 				</Label>
 
-				<Label prefHeight="15.0" prefWidth="309.0" text="Choose starting player:"
-					GridPane.rowIndex="1">
+				<Label prefHeight="15.0" prefWidth="309.0" text="Choose starting player:" GridPane.rowIndex="1">
 					<font>
 						<Font name="Arial" size="12" />
 					</font>
 				</Label>
-				<RadioButton fx:id="blackBox" mnemonicParsing="false"
-					prefHeight="18.0" prefWidth="70.0" selected="true" text="black"
-					GridPane.columnIndex="1" GridPane.rowIndex="1">
+				<RadioButton fx:id="blackBox" mnemonicParsing="false" prefHeight="18.0" prefWidth="70.0" selected="true" text="black" GridPane.columnIndex="1" GridPane.rowIndex="1">
 					<toggleGroup>
 						<ToggleGroup fx:id="starter" />
 					</toggleGroup>
 				</RadioButton>
-				<RadioButton fx:id="whiteBox" mnemonicParsing="false"
-					text="white" toggleGroup="$starter" GridPane.columnIndex="2"
-					GridPane.rowIndex="1" />
-				<ChoiceBox fx:id="blackChoice" prefWidth="150.0"
-					GridPane.columnIndex="1" GridPane.rowIndex="2" />
-				<ChoiceBox fx:id="whiteChoice" prefWidth="150.0"
-					GridPane.columnIndex="2" GridPane.rowIndex="2" />
+				<RadioButton fx:id="whiteBox" mnemonicParsing="false" text="white" toggleGroup="$starter" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+				<ChoiceBox fx:id="blackChoice" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+				<ChoiceBox fx:id="whiteChoice" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 				<Label text="Choose active colors:" GridPane.rowIndex="2" />
 				<Label text="Choose board size:" GridPane.rowIndex="4" />
-				<ChoiceBox fx:id="size" prefWidth="150.0"
-					GridPane.columnIndex="1" GridPane.rowIndex="4" />
-				<Button fx:id="ready" mnemonicParsing="false" text="Ready!"
-					GridPane.rowIndex="5" onAction="#HandleButtonClicked" />
+				<ChoiceBox fx:id="size" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+				<Button fx:id="ready" mnemonicParsing="false" onAction="#HandleButtonClicked" text="Ready!" GridPane.rowIndex="5" />
+            <Label fx:id="msg" prefHeight="15.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="5" />
 			</children>
 			<columnConstraints>
-				<ColumnConstraints maxWidth="176.0" minWidth="142.0"
-					prefWidth="142.0" />
-				<ColumnConstraints maxWidth="139.0" minWidth="45.0"
-					prefWidth="66.0" />
-				<ColumnConstraints maxWidth="75.0" minWidth="0.0"
-					prefWidth="73.0" />
+				<ColumnConstraints maxWidth="176.0" minWidth="142.0" prefWidth="142.0" />
+				<ColumnConstraints maxWidth="139.0" minWidth="45.0" prefWidth="66.0" />
+				<ColumnConstraints maxWidth="75.0" minWidth="0.0" prefWidth="73.0" />
 			</columnConstraints>
 			<rowConstraints>
 				<RowConstraints />
 				<RowConstraints />
-				<RowConstraints maxHeight="18.0" minHeight="18.0"
-					prefHeight="18.0" />
-				<RowConstraints maxHeight="0.0" minHeight="0.0"
-					prefHeight="0.0" />
-				<RowConstraints maxHeight="0.0" minHeight="16.0"
-					prefHeight="30.0" />
-				<RowConstraints maxHeight="0.0" minHeight="16.0"
-					prefHeight="30.0" />
+				<RowConstraints maxHeight="18.0" minHeight="18.0" prefHeight="18.0" />
+				<RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
+				<RowConstraints maxHeight="0.0" minHeight="16.0" prefHeight="30.0" />
+				<RowConstraints maxHeight="0.0" minHeight="16.0" prefHeight="30.0" />
 			</rowConstraints>
 		</GridPane>
 	</children>

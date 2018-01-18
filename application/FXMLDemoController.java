@@ -3,13 +3,13 @@ package application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.fxml.*;
 
 import javafx.event.ActionEvent;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
@@ -19,13 +19,14 @@ import javafx.collections.ObservableList;
 
 public class FXMLDemoController {
 
-	ObservableList<String> blackColorChoice = FXCollections.observableArrayList("Black", "Purple", "Blue", "Green",
+	ObservableList<String> blackColorChoice = FXCollections.observableArrayList("Black", "Pruple", "Blue", "green",
 			"Yellow", "Orange", "Red");
 
-	ObservableList<String> whiteColorChoice = FXCollections.observableArrayList("White", "Purple", "Blue", "Green",
+	ObservableList<String> whiteColorChoice = FXCollections.observableArrayList("White", "Pruple", "Blue", "green",
 			"Yellow", "Orange", "Red");
 
-	ObservableList<String> sizeChoice = FXCollections.observableArrayList("4", "6", "8", "10", "12", "14", "16", "18", "20");
+	ObservableList<String> sizeChoice = FXCollections.observableArrayList("4", "6", "8", "10", "12", "14", "16", "18",
+			"20");
 
 	@FXML
 	private RadioButton blackBox;
@@ -35,7 +36,7 @@ public class FXMLDemoController {
 
 	@FXML
 	private ToggleGroup starter;
-	
+
 	@FXML
 	private ChoiceBox<String> blackChoice;
 
@@ -44,12 +45,13 @@ public class FXMLDemoController {
 
 	@FXML
 	private ChoiceBox<String> size;
-	
+
 	@FXML
 	private Button ready;
 
 	@FXML
 	private void initialize() {
+		msg.setText("");
 		blackChoice.setValue("Black");
 		whiteChoice.setValue("White");
 		blackChoice.setItems(blackColorChoice);
@@ -60,8 +62,8 @@ public class FXMLDemoController {
 
 	public void saveSettings() {
 		try {
-			Writer fileWriter = new FileWriter("../../src/application/setting_config.txt", false);
-			fileWriter.write(((RadioButton)starter.getSelectedToggle()).getText() + "\n");
+			Writer fileWriter = new FileWriter("src/application/setting_config.txt", false);
+			fileWriter.write(((RadioButton) starter.getSelectedToggle()).getText() + "\n");
 			fileWriter.write(blackChoice.getValue() + "\n");
 			fileWriter.write(whiteChoice.getValue() + "\n");
 			fileWriter.write(size.getValue() + "\n");
@@ -70,40 +72,35 @@ public class FXMLDemoController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		/*try(BufferedReader br = new BufferedReader(new FileReader("setting_config.txt"))) {
-		    String line;
-		    line = br.readLine();
-		    if (line != null) {
-		    	//
-		    }
-			for(String line; (line = br.readLine()) != null; ) {
-		        // process the line.
-		    }
-		    // line is not visible here.
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 	}
 	
-	@FXML	
+	@FXML
+	private Label msg;
+
+	@FXML
 	private void HandleButtonClicked(ActionEvent event) throws IOException {
+		if (whiteChoice.getValue() == blackChoice.getValue()) {
+			msg.setTextFill(Color.RED);
+			msg.setText("same color");
+			return;
+		}
 		saveSettings();
 		Stage stage = null;
 		Parent root = null;
-		if(event.getSource() == ready) {
-			//get stage
+		if (event.getSource() == ready) {
+			// get stage
 			stage = (Stage) ready.getScene().getWindow();
-			//create game scene
+			// create game scene
 			root = FXMLLoader.load(getClass().getResource("FXMLMainScreen.fxml"));
 		}
-		//set stage
+		// set stage
 		Scene scene = new Scene(root);
 		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setTitle("Reversi");
 		stage.setScene(scene);
 		stage.show();
 	}
-	
+
 	public FXMLDemoController() {
 	}
 }
